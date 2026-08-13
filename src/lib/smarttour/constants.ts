@@ -46,17 +46,24 @@ export const INTERESTS: {
   },
 ];
 
+export interface ScoreWeights {
+  interest: number;
+  distance: number;
+  rating: number;
+  budget: number;
+  weather: number;
+  popularity: number;
+}
+
 /** Transparent, configurable recommendation weights (must sum to 1). */
-export const DEFAULT_WEIGHTS = {
+export const DEFAULT_WEIGHTS: ScoreWeights = {
   interest: 0.3,
   distance: 0.2,
   rating: 0.15,
   budget: 0.15,
   weather: 0.1,
   popularity: 0.1,
-} as const;
-
-export type ScoreWeights = typeof DEFAULT_WEIGHTS;
+};
 
 /** Indicative INR cost per price level, used for transparent estimates. */
 export const PRICE_LEVEL_COST: Record<number, number> = {
