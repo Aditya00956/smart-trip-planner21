@@ -98,9 +98,9 @@ export interface ScoreInput {
   origin: LatLng;
   preferences: UserPreferences;
   weather: WeatherSnapshot;
-  weights?: ScoreWeights;
+  weights?: ScoreWeights | undefined;
   /** Real distance/duration from the Routes API when available. */
-  route?: { distanceKm: number; durationMin: number };
+  route?: { distanceKm: number; durationMin: number } | undefined;
 }
 
 export function scorePlace(input: ScoreInput): ScoredPlace {
@@ -227,7 +227,7 @@ export interface ItineraryInput {
   ranked: ScoredPlace[];
   preferences: UserPreferences;
   forecast: WeatherForecastDay[];
-  startDate?: string | null;
+  startDate?: string | null | undefined;
 }
 
 /**
