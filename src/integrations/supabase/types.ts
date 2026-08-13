@@ -14,16 +14,258 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      api_events: {
+        Row: {
+          api: string
+          created_at: string
+          id: string
+          latency_ms: number
+          message: string | null
+          ok: boolean
+          status: number | null
+          user_id: string | null
+        }
+        Insert: {
+          api: string
+          created_at?: string
+          id?: string
+          latency_ms?: number
+          message?: string | null
+          ok?: boolean
+          status?: number | null
+          user_id?: string | null
+        }
+        Update: {
+          api?: string
+          created_at?: string
+          id?: string
+          latency_ms?: number
+          message?: string | null
+          ok?: boolean
+          status?: number | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      favorites: {
+        Row: {
+          category: string
+          created_at: string
+          id: string
+          lat: number | null
+          lng: number | null
+          name: string
+          place_id: string
+          rating: number | null
+          user_id: string
+        }
+        Insert: {
+          category?: string
+          created_at?: string
+          id?: string
+          lat?: number | null
+          lng?: number | null
+          name: string
+          place_id: string
+          rating?: number | null
+          user_id: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          id?: string
+          lat?: number | null
+          lng?: number | null
+          name?: string
+          place_id?: string
+          rating?: number | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          activity_type: string
+          budget: number
+          created_at: string
+          days: number
+          email: string
+          id: string
+          indoor_preference: string
+          interests: string[]
+          max_distance_km: number
+          name: string
+          transport: string
+          updated_at: string
+        }
+        Insert: {
+          activity_type?: string
+          budget?: number
+          created_at?: string
+          days?: number
+          email?: string
+          id: string
+          indoor_preference?: string
+          interests?: string[]
+          max_distance_km?: number
+          name?: string
+          transport?: string
+          updated_at?: string
+        }
+        Update: {
+          activity_type?: string
+          budget?: number
+          created_at?: string
+          days?: number
+          email?: string
+          id?: string
+          indoor_preference?: string
+          interests?: string[]
+          max_distance_km?: number
+          name?: string
+          transport?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      recommendations: {
+        Row: {
+          category: string
+          created_at: string
+          id: string
+          name: string
+          place_id: string
+          reasons: Json
+          score: number
+          user_id: string
+        }
+        Insert: {
+          category?: string
+          created_at?: string
+          id?: string
+          name: string
+          place_id: string
+          reasons?: Json
+          score?: number
+          user_id: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          id?: string
+          name?: string
+          place_id?: string
+          reasons?: Json
+          score?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
+      search_events: {
+        Row: {
+          category: string
+          created_at: string
+          id: string
+          query: string
+          user_id: string | null
+        }
+        Insert: {
+          category?: string
+          created_at?: string
+          id?: string
+          query: string
+          user_id?: string | null
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          id?: string
+          query?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      trips: {
+        Row: {
+          budget: number
+          cost_breakdown: Json
+          created_at: string
+          destination: string
+          destination_lat: number | null
+          destination_lng: number | null
+          end_date: string | null
+          estimated_cost: number
+          id: string
+          itinerary: Json
+          start_date: string | null
+          user_id: string
+        }
+        Insert: {
+          budget?: number
+          cost_breakdown?: Json
+          created_at?: string
+          destination: string
+          destination_lat?: number | null
+          destination_lng?: number | null
+          end_date?: string | null
+          estimated_cost?: number
+          id?: string
+          itinerary?: Json
+          start_date?: string | null
+          user_id: string
+        }
+        Update: {
+          budget?: number
+          cost_breakdown?: Json
+          created_at?: string
+          destination?: string
+          destination_lat?: number | null
+          destination_lng?: number | null
+          end_date?: string | null
+          estimated_cost?: number
+          id?: string
+          itinerary?: Json
+          start_date?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +392,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "user"],
+    },
   },
 } as const
