@@ -33,7 +33,6 @@ const KIND_COLOR: Record<MarkerKind, string> = {
 
 declare global {
   interface Window {
-    google?: typeof globalThis.google;
     __smartTourMapReady?: boolean;
     __smartTourMapInit?: () => void;
   }
