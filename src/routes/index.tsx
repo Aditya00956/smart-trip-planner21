@@ -62,17 +62,18 @@ function Home() {
   }, []);
 
   const result = plan.data?.result ?? null;
+  const recs = result?.recommendations ?? null;
 
   const markers: MapMarker[] = useMemo(() => {
-    if (!result) return [];
-    return result.places.slice(0, 12).map((scored, index) => ({
+    if (!recs) return [];
+    return recs.places.slice(0, 12).map((scored, index) => ({
       id: scored.place.placeId,
       name: scored.place.name,
       location: scored.place.location,
       kind: index < 3 ? "recommended" : "attraction",
       label: String(index + 1),
     }));
-  }, [result]);
+  }, [recs]);
 
   const route = useMemo(
     () => (result?.routePolyline ? decodePolyline(result.routePolyline) : []),
@@ -140,7 +141,7 @@ function Home() {
               <GlassPanel className="relative h-[420px] overflow-hidden p-0">
                 <MapView
                   className="relative h-full w-full"
-                  center={result.destination.location ?? DEFAULT_CENTER}
+                  center={recs?.destination.location ?? DEFAULT_CENTER}
                   markers={markers}
                   route={route}
                   selectedId={selectedId}
@@ -149,9 +150,9 @@ function Home() {
               </GlassPanel>
               <div className="space-y-4">
                 <WeatherCard
-                  weather={result.weather}
-                  forecast={result.forecast}
-                  place={result.destination.name}
+                  weather={recs!.weather}
+                  forecast={recs!.forecast}
+                  place={recs!.destination.name}
                 />
                 <CostSummary cost={result.cost} />
               </div>
@@ -165,7 +166,7 @@ function Home() {
               description="Scores combine interest match (30%), distance (20%), rating (15%), budget fit (15%), weather (10%) and popularity (10%)."
             />
             <div className="mt-6 grid gap-4 md:grid-cols-2">
-              {result.places.slice(0, 8).map((scored) => (
+              {recs!.places.slice(0, 8).map((scored) => (
                 <PlaceCard
                   key={scored.place.placeId}
                   scored={scored}
