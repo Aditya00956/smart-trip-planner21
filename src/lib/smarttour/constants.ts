@@ -1,6 +1,6 @@
 import type { InterestId } from "./types";
 
-export const DEFAULT_DESTINATION = "Kochi, Kerala, India";
+export const DEFAULT_DESTINATION = "\u00a0India";
 export const DEFAULT_CENTER = { lat: 9.9312, lng: 76.2673 };
 
 export const INTERESTS: {
