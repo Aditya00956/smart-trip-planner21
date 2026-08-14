@@ -87,7 +87,7 @@ function Home() {
           Cloud tourism intelligence
         </p>
         <h1 className="mt-3 text-4xl font-semibold leading-tight sm:text-5xl">
-          Plan a smarter trip to <span className="text-gradient">{DEFAULT_DESTINATION}</span>
+          Plan a smarter trip to <span className="text-gradient">{destination}</span>
         </h1>
         <p className="mt-4 max-w-2xl text-base text-muted-foreground">
           SmartTour blends live places, weather and routing data into a weighted recommendation
