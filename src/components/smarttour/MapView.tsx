@@ -99,8 +99,8 @@ export default function MapView({
           mapTypeControl: false,
           streetViewControl: false,
           fullscreenControl: true,
-          backgroundColor: "#0d1c22",
-          styles: DARK_STYLE,
+          backgroundColor: theme === "dark" ? "#0d1c22" : "#f4f8f9",
+          styles: theme === "dark" ? DARK_STYLE : LIGHT_STYLE,
         });
         setStatus("ready");
       })
