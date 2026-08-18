@@ -42,6 +42,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
+  const { theme } = useTheme();
   const [destination, setDestination] = useState(DEFAULT_DESTINATION);
   const [preferences, setPreferences] = useState<UserPreferences>(DEFAULT_PREFERENCES);
   const [selectedId, setSelectedId] = useState<string | null>(null);
