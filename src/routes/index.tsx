@@ -149,6 +149,7 @@ function Home() {
                   route={route}
                   selectedId={selectedId}
                   onSelect={setSelectedId}
+                  theme={theme}
                 />
               </GlassPanel>
               <div className="space-y-4">
