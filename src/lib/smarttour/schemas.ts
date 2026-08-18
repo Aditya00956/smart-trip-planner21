@@ -21,6 +21,8 @@ export const preferencesSchema = z.object({
   transport: z.enum(["car", "transit", "walk", "bike"]).default("car"),
   activityType: z.enum(["relaxed", "balanced", "packed"]).default("balanced"),
   indoorPreference: z.enum(["indoor", "outdoor", "either"]).default("either"),
+  startDate: z.string().max(20).optional(),
+  startTime: z.string().max(10).optional(),
 });
 
 export const latLngSchema = z.object({
