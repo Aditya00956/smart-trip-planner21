@@ -25,6 +25,9 @@ export function PlaceCard({
 }: PlaceCardProps) {
   const { place } = scored;
   const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${place.location.lat},${place.location.lng}&destination_place_id=${place.placeId}`;
+  const photoUrl = place.photoName
+    ? `/api/place-photo?name=${encodeURIComponent(place.photoName)}&w=800`
+    : null;
 
   return (
     <GlassPanel
@@ -33,7 +36,19 @@ export function PlaceCard({
       className={selected ? "p-5 ring-2 ring-primary" : "p-5"}
       aria-label={`${place.name}, ${scored.score}% match`}
     >
+      {photoUrl ? (
+        <img
+          src={photoUrl}
+          alt={`${place.name} in ${place.address || "the destination"}`}
+          loading="lazy"
+          className="mb-4 h-44 w-full rounded-xl border border-border object-cover"
+          onError={(event) => {
+            event.currentTarget.style.display = "none";
+          }}
+        />
+      ) : null}
       <div className="flex items-start justify-between gap-3">
+
         <div>
           <h3 className="text-lg font-semibold leading-tight">{place.name}</h3>
           <p className="mt-1 text-xs uppercase tracking-wide text-muted-foreground">
