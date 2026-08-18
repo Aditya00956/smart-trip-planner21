@@ -20,6 +20,7 @@ interface MapViewProps {
   onSelect?: (id: string) => void;
   className?: string;
   zoom?: number;
+  theme?: "dark" | "light";
 }
 
 const KIND_COLOR: Record<MarkerKind, string> = {
