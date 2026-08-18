@@ -10,33 +10,43 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiPlacePhotoRouteImport } from './routes/api/place-photo'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPlacePhotoRoute = ApiPlacePhotoRouteImport.update({
+  id: '/api/place-photo',
+  path: '/api/place-photo',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/api/place-photo': typeof ApiPlacePhotoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/api/place-photo': typeof ApiPlacePhotoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/api/place-photo': typeof ApiPlacePhotoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/api/place-photo'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/api/place-photo'
+  id: '__root__' | '/' | '/api/place-photo'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApiPlacePhotoRoute: typeof ApiPlacePhotoRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +58,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/place-photo': {
+      id: '/api/place-photo'
+      path: '/api/place-photo'
+      fullPath: '/api/place-photo'
+      preLoaderRoute: typeof ApiPlacePhotoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApiPlacePhotoRoute: ApiPlacePhotoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
