@@ -86,12 +86,17 @@ function Home() {
   return (
     <main className="relative min-h-screen">
       <section className="mx-auto max-w-6xl px-4 pt-16 pb-8 sm:px-6">
-        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-primary">
-          Cloud tourism intelligence
-        </p>
-        <h1 className="mt-3 text-4xl font-semibold leading-tight sm:text-5xl">
-          Plan a smarter trip to <span className="text-gradient">{destination}</span>
-        </h1>
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-primary">
+              Cloud tourism intelligence
+            </p>
+            <h1 className="mt-3 text-4xl font-semibold leading-tight sm:text-5xl">
+              Plan a smarter trip to <span className="text-gradient">{destination}</span>
+            </h1>
+          </div>
+          <ThemeToggle className="hidden sm:flex" />
+        </div>
         <p className="mt-4 max-w-2xl text-base text-muted-foreground">
           SmartTour blends live places, weather and routing data into a weighted recommendation
           score, then turns the best matches into a day-by-day itinerary with cost estimates.
