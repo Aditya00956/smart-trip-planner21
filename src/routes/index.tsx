@@ -10,6 +10,7 @@ import MapView, { type MapMarker } from "@/components/smarttour/MapView";
 import { PlaceCard } from "@/components/smarttour/PlaceCard";
 import { PreferenceForm } from "@/components/smarttour/PreferenceForm";
 import { WeatherCard } from "@/components/smarttour/WeatherCard";
+import { useTheme } from "@/components/theme-provider";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -40,6 +41,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
+  const { theme } = useTheme();
   const [destination, setDestination] = useState(DEFAULT_DESTINATION);
   const [preferences, setPreferences] = useState<UserPreferences>(DEFAULT_PREFERENCES);
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -146,6 +148,7 @@ function Home() {
                   route={route}
                   selectedId={selectedId}
                   onSelect={setSelectedId}
+                  theme={theme}
                 />
               </GlassPanel>
               <div className="space-y-4">

@@ -20,6 +20,7 @@ interface MapViewProps {
   onSelect?: (id: string) => void;
   className?: string;
   zoom?: number;
+  theme?: "dark" | "light";
 }
 
 const KIND_COLOR: Record<MarkerKind, string> = {
@@ -78,6 +79,7 @@ export default function MapView({
   onSelect,
   className,
   zoom = 12,
+  theme = "dark",
 }: MapViewProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<google.maps.Map | null>(null);
@@ -97,8 +99,8 @@ export default function MapView({
           mapTypeControl: false,
           streetViewControl: false,
           fullscreenControl: true,
-          backgroundColor: "#0d1c22",
-          styles: DARK_STYLE,
+          backgroundColor: theme === "dark" ? "#0d1c22" : "#f4f8f9",
+          styles: theme === "dark" ? DARK_STYLE : LIGHT_STYLE,
         });
         setStatus("ready");
       })
@@ -198,4 +200,17 @@ const DARK_STYLE: google.maps.MapTypeStyle[] = [
   { featureType: "transit", elementType: "geometry", stylers: [{ color: "#20353d" }] },
   { featureType: "water", elementType: "geometry", stylers: [{ color: "#0b2730" }] },
   { featureType: "water", elementType: "labels.text.fill", stylers: [{ color: "#4c8f9c" }] },
+];
+
+const LIGHT_STYLE: google.maps.MapTypeStyle[] = [
+  { elementType: "geometry", stylers: [{ color: "#f4f8f9" }] },
+  { elementType: "labels.text.stroke", stylers: [{ color: "#ffffff" }] },
+  { elementType: "labels.text.fill", stylers: [{ color: "#3a5a62" }] },
+  { featureType: "poi", elementType: "labels.text.fill", stylers: [{ color: "#4a6a72" }] },
+  { featureType: "poi.park", elementType: "geometry", stylers: [{ color: "#e8f5e9" }] },
+  { featureType: "road", elementType: "geometry", stylers: [{ color: "#ffffff" }] },
+  { featureType: "road", elementType: "labels.text.fill", stylers: [{ color: "#4a6a72" }] },
+  { featureType: "transit", elementType: "geometry", stylers: [{ color: "#eef4f5" }] },
+  { featureType: "water", elementType: "geometry", stylers: [{ color: "#d8eef2" }] },
+  { featureType: "water", elementType: "labels.text.fill", stylers: [{ color: "#6b9ba4" }] },
 ];
