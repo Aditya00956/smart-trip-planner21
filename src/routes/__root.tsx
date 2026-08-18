@@ -127,8 +127,10 @@ function RootShell({ children }: { children: ReactNode }) {
         />
       </head>
       <body>
-        <ThemeToggle className="fixed top-4 right-4 z-50" />
-        {children}
+        <ThemeProvider>
+          <ThemeToggle className="fixed top-4 right-4 z-50" />
+          {children}
+        </ThemeProvider>
         <Scripts />
       </body>
     </html>
@@ -139,11 +141,9 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
   return (
-    <ThemeProvider>
-      <QueryClientProvider client={queryClient}>
-        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-        <Outlet />
-      </QueryClientProvider>
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+      <Outlet />
+    </QueryClientProvider>
   );
 }
