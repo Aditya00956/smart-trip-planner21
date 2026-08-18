@@ -66,6 +66,8 @@ export interface UserPreferences {
   transport: "car" | "transit" | "walk" | "bike";
   activityType: "relaxed" | "balanced" | "packed";
   indoorPreference: "indoor" | "outdoor" | "either";
+  startDate?: string;
+  startTime?: string;
 }
 
 export interface ScoredPlace {

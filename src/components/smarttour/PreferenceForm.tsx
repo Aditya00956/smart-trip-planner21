@@ -134,25 +134,27 @@ export function PreferenceForm({ value, onChange, compact = false }: PreferenceF
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="activity">Activity pace</Label>
-          <Select
-            value={value.activityType}
-            onValueChange={(activityType) =>
-              onChange({ ...value, activityType: activityType as UserPreferences["activityType"] })
-            }
-          >
-            <SelectTrigger id="activity" className="glass">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              {Object.entries(ACTIVITY_LABELS).map(([key, label]) => (
-                <SelectItem key={key} value={key}>
-                  {label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <Label htmlFor="start-date">Start date &amp; time</Label>
+          <div className="flex gap-2">
+            <Input
+              id="start-date"
+              type="date"
+              className="glass"
+              value={value.startDate ?? ""}
+              onChange={(event) => onChange({ ...value, startDate: event.target.value })}
+              aria-label="Trip start date"
+            />
+            <Input
+              id="start-time"
+              type="time"
+              className="glass w-32"
+              value={value.startTime ?? ""}
+              onChange={(event) => onChange({ ...value, startTime: event.target.value })}
+              aria-label="Trip start time"
+            />
+          </div>
         </div>
+
 
         <div className="space-y-2">
           <Label htmlFor="indoor">Indoor / outdoor</Label>
