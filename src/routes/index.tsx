@@ -10,6 +10,8 @@ import MapView, { type MapMarker } from "@/components/smarttour/MapView";
 import { PlaceCard } from "@/components/smarttour/PlaceCard";
 import { PreferenceForm } from "@/components/smarttour/PreferenceForm";
 import { WeatherCard } from "@/components/smarttour/WeatherCard";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import { useTheme } from "@/components/theme-provider";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
