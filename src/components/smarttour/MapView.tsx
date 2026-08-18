@@ -79,6 +79,7 @@ export default function MapView({
   onSelect,
   className,
   zoom = 12,
+  theme = "dark",
 }: MapViewProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<google.maps.Map | null>(null);
