@@ -9,7 +9,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { INTERESTS } from "@/lib/smarttour/constants";
-import { ACTIVITY_LABELS, INDOOR_LABELS, TRANSPORT_LABELS } from "@/lib/smarttour/prefs";
+import { INDOOR_LABELS, TRANSPORT_LABELS } from "@/lib/smarttour/prefs";
 import { formatINR } from "@/lib/smarttour/recommendation";
 import type { InterestId, UserPreferences } from "@/lib/smarttour/types";
 import { cn } from "@/lib/utils";
